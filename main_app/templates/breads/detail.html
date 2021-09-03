@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+{% comment %} <link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/sushi-index.css' %}"
+/> {% endcomment %}
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Bread List</h1>
+</section>
+
+<section class="card-container">
+  <div class="card">
+    {% comment %} <a href="{% url 'sushi_detail' sushi.id %}"> {% endcomment %}
+      <div class="card-content">
+        <div class="card-img-container">
+          {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
+        </div>
+        <h2 class="card-title">{{ bread.name }}</h2>
+        <p>{{ bread.description }}</p>
+      </div>
+    {% comment %} </a> {% endcomment %}
+  </div>
+</section>
+{% endblock %}

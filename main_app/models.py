@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Task(models.Model):
   name = models.CharField(max_length=100)
   interval = models.IntegerField(default=15)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  # user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   def __str__(self):
     return self.name
@@ -15,9 +15,9 @@ class Task(models.Model):
 
 class Bread(models.Model):
   name = models.CharField(max_length=100)
-  description = models.TextField(max_length=250, default='comes with free soy sauce, ginger, and wasabi paste')
-  tasks = models.ManyToManyField(Task)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  description = models.TextField(max_length=250)
+  # tasks = models.ManyToManyField(Task)
+  # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
