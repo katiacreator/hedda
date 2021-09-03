@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-# from .models import 
+from .models import Bread, Task, Photo
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.views import LoginView
