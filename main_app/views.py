@@ -2,11 +2,11 @@ from django.shortcuts import redirect, render
 from .models import Bread, Task, Photo
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-# from django.contrib.auth.views import LoginView
-# from django.contrib.auth import login
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.shortcuts import render
 
@@ -33,9 +33,10 @@ def breads_detail(request, bread_id):
   bread = Bread.objects.get(id=bread_id)
   return render(request, 'breads/detail.html', {'bread': bread})
 
-class breadCreate(CreateView):
+class BreadCreate(CreateView):
   model = Bread
   fields = ['name', 'description']
+
 
   def form_valid(self, form):
     form.instance.user = self.request.user

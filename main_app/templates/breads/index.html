@@ -13,7 +13,7 @@
 <section class="card-container">
   {% for bread in breads %}
   <div class="card">
-    {% comment %} <a href="{% url 'sushi_detail' sushi.id %}"> {% endcomment %}
+    <a href="{% url 'breads_detail' bread.id %}">
       <div class="card-content">
         <div class="card-img-container">
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
@@ -21,7 +21,7 @@
         <h2 class="card-title">{{ bread.name }}</h2>
         <p>{{ bread.description }}</p>
       </div>
-    {% comment %} </a> {% endcomment %}
+    </a>
   </div>
   {% endfor %}
 </section>
