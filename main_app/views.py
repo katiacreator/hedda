@@ -37,10 +37,18 @@ class BreadCreate(CreateView):
   model = Bread
   fields = ['name', 'description']
 
-
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class BreadUpdate(UpdateView):
+  model = Bread
+  fields = ['name', 'description']
+
+class BreadDelete(DeleteView):
+  model = Bread
+  success_url = '/breads/'
+
 
 
 
