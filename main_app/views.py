@@ -28,7 +28,6 @@ def breads_index(request):
   breads = Bread.objects.all()
   return render(request, 'breads/index.html', { 'breads': breads})
 
-
 def breads_detail(request, bread_id):
   bread = Bread.objects.get(id=bread_id)
   return render(request, 'breads/detail.html', {'bread': bread})
@@ -48,6 +47,30 @@ class BreadUpdate(UpdateView):
 class BreadDelete(DeleteView):
   model = Bread
   success_url = '/breads/'
+
+def tasks_index(request):
+  tasks = Task.objects.all()
+  return render(request, 'tasks/index.html', { 'tasks': tasks})
+
+def tasks_detail(request, task_id):
+  task = Task.objects.get(id=task_id)
+  return render(request, 'tasks/detail.html', {'task': task})
+
+class TaskCreate(CreateView):
+  model = Task
+  fields = ['name', 'interval']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class TaskUpdate(UpdateView):
+  model = Task
+  fields = ['name', 'interval']
+
+class TaskDelete(DeleteView):
+  model = Task
+  success_url = '/tasks/'
 
 
 

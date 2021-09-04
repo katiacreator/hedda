@@ -9,6 +9,11 @@ urlpatterns = [
   path('breads/create/', views.BreadCreate.as_view(), name='breads_create'),
   path('breads/<int:pk>/update/', views.BreadUpdate.as_view(), name='breads_update'),
   path('breads/<int:pk>/delete/', views.BreadDelete.as_view(), name='breads_delete'),
-  # path('tasks/', views.tasks_index, name='tasks_index'),
-  # path('photos/', views.photos_index, name='photos_index'),
+  path('tasks/', views.tasks_index, name='tasks_index'),
+  # path('tasks/', views.TaskList.as_view(), name='tasks_index'),
+  path('tasks/create/', views.TaskCreate.as_view(), name='tasks_create'),
+  path('tasks/<int:pk>/update/', views.TaskUpdate.as_view(), name='tasks_update'),
+  path('tasks/<int:pk>/delete/', views.TaskDelete.as_view(), name='tasks_delete'),
+  # path('breads/<int:bread_id>/add_bread_photo', views.add_bread_photo, name='add_bread_photo'),
+  # path('tasks/<int:task_id>/add_task_photo', views.add_task_photo, name='add_task_photo'),
 ]
