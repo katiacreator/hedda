@@ -7,38 +7,22 @@
 {% endblock %} {% block content %}
 
 <section class="page-header">
-  <h1>Bread List</h1>
+  <h1>Task List</h1>
 </section>
 
 <section class="card-container">
+  {% for task in tasks %}
   <div class="card">
     {% comment %} <a href="{% url 'sushi_detail' sushi.id %}"> {% endcomment %}
       <div class="card-content">
         <div class="card-img-container">
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
         </div>
-        <h2 class="card-title">{{ bread.name }}</h2>
-        <p>{{ bread.description }}</p>
+        <h2 class="card-title">{{ task.name }}</h2>
+        <p>{{ task.interval }} <span>minutes</span> </p>
       </div>
     {% comment %} </a> {% endcomment %}
-     <div>
-      <a href="" class="btn warn">Edit</a>
-      <a href="" class="btn danger">Delete</a>
-    </div>
-    <h3>Add photo</h3>
-    <p id="file-name"></p>
-    <form 
-      action=""
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      {% csrf_token %}
-      <label class="btn secondary">
-        Select photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
   </div>
+  {% endfor %}
 </section>
 {% endblock %}
