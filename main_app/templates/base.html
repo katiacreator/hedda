@@ -23,8 +23,21 @@
   </head>
   <body>
     <header>
-    
-    <h1>Hedda</h1>
+   <nav> 
+      <ul>
+        {% comment %} {% if user.is_authentibreaded %} {% endcomment %}
+          <li><a href="{% url 'breads_index' %}">All breads</a></li>
+          <li><a href="{% url 'tasks_index' %}">All tasks</a></li>
+          <li><a href="{% url 'breads_create' %}">Add a bread</a></li>
+          <li><a href="{% url 'tasks_create' %}">Add a task</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
+        {% comment %} {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Log In</a></li> {% endcomment %}
+        {% comment %} {% endif %} {% endcomment %}
+      </ul>
+    </nav>
     </header>
     <main>{% block content %} {% endblock %}</main>
   </body>

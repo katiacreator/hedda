@@ -7,7 +7,7 @@
 
 <form action="" method="post" class="form">
   {% csrf_token %}
-  <a href="{% url 'breads_detail' bread.id %}" class="btn secondary">
+  <a href="{% url 'tasks_detail' task.id %}" class="btn secondary">
   Go Back
   </a>
   <button type="submit" class="btn danger">Delete!</button>

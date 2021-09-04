@@ -11,9 +11,9 @@
 </section>
 
 <section class="card-container">
-  {% for task in tasks %}
+  {% for task in task_list %}
   <div class="card">
-    {% comment %} <a href="{% url 'sushi_detail' sushi.id %}"> {% endcomment %}
+    <a href="{% url 'tasks_detail' task.id %}">
       <div class="card-content">
         <div class="card-img-container">
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
@@ -21,7 +21,7 @@
         <h2 class="card-title">{{ task.name }}</h2>
         <p>{{ task.interval }} <span>minutes</span> </p>
       </div>
-    {% comment %} </a> {% endcomment %}
+    </a>
   </div>
   {% endfor %}
 </section>
