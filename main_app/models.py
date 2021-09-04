@@ -18,7 +18,7 @@ class Task(models.Model):
 class Bread(models.Model):
   name = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
-  tasks = models.ManyToManyField(Task)
+  # tasks = models.ManyToManyField(Task)
   # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
