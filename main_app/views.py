@@ -10,13 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.shortcuts import render
 
-# breads = [
-#   Bread('Sourdough Loaf', 'sourdough duh'),
-#   Bread('Sourdough FlatBread', 'sourdough duh'),
-#   Bread('Sourdough Pancake', 'sourdough duh'),
-#   Bread('Sourdough Muffins', 'sourdough duh'),
-# ]
-
 def home(request):
   return render(request, 'home.html')
 
@@ -48,17 +41,15 @@ class BreadDelete(DeleteView):
   model = Bread
   success_url = '/breads/'
 
-def tasks_index(request):
-  tasks = Task.objects.all()
-  return render(request, 'tasks/index.html', { 'tasks': tasks})
+class TaskList(ListView):
+  model = Task
 
-def tasks_detail(request, task_id):
-  task = Task.objects.get(id=task_id)
-  return render(request, 'tasks/detail.html', {'task': task})
+class TaskDetail(DetailView):
+  model = Task
 
 class TaskCreate(CreateView):
   model = Task
-  fields = ['name', 'interval']
+  fields = '__all__'
 
   def form_valid(self, form):
     form.instance.user = self.request.user
