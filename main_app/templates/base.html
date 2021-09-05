@@ -25,7 +25,7 @@
     <header>
    <nav> 
       <ul>
-        {% comment %} {% if user.is_authentibreaded %} {% endcomment %}
+        {% comment %} {% if user.is_authenticated %} {% endcomment %}
           <li><a href="{% url 'breads_index' %}">All breads</a></li>
           <li><a href="{% url 'tasks_index' %}">All tasks</a></li>
           <li><a href="{% url 'breads_create' %}">Add a bread</a></li>

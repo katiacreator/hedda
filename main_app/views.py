@@ -49,7 +49,7 @@ class TaskDetail(DetailView):
 
 class TaskCreate(CreateView):
   model = Task
-  fields = '__all__'
+  fields = ['name', 'hours', 'minutes']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -57,7 +57,7 @@ class TaskCreate(CreateView):
 
 class TaskUpdate(UpdateView):
   model = Task
-  fields = ['name', 'interval']
+  fields = ['name', 'hours', 'minutes']
 
 class TaskDelete(DeleteView):
   model = Task

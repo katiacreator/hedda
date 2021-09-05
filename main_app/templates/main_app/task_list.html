@@ -15,11 +15,8 @@
   <div class="card">
     <a href="{% url 'tasks_detail' task.id %}">
       <div class="card-content">
-        <div class="card-img-container">
-          {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
-        </div>
-        <h2 class="card-title">{{ task.name }}</h2>
-        <p>{{ task.interval }} <span>minutes</span> </p>
+        <h2>{{ task.name }}</h2>
+        <p> Timer: {{ task.hours }} :{{ task.minutes }}</p>
       </div>
     </a>
   </div>

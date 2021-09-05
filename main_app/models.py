@@ -1,12 +1,13 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.urls import reverse
-# from datetime import date
+from datetime import time
 from django.contrib.auth.models import User
 
 class Task(models.Model):
   name = models.CharField(max_length=100)
-  interval = models.IntegerField(default=15)
+  hours = models.IntegerField()
+  minutes = models.IntegerField()
   # user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   def __str__(self):
@@ -30,8 +31,12 @@ class Bread(models.Model):
 class Photo(models.Model):
   url = models.CharField(max_length=250)
   bread = models.OneToOneField(Bread, on_delete=models.CASCADE)
-  #onetomany one photo can belong to many different tasks?????
   task = models.OneToOneField(Task, on_delete=models.CASCADE)
+#add date to this model for photo gallery
+
 
   def __str__(self):
-    return f"Photo for bread_id: {self.bread_id} @{self.url}" 
+    if self.bread_id:
+      return f"Photo for bread_id: {self.bread_id} @{self.url}"
+    if self.task_id:
+      return f"Photo for task_id: {self.task_id} @{self.url}" 
