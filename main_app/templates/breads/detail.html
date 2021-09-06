@@ -4,6 +4,7 @@
   type="text/css"
   href="{% static 'css/sushi-index.css' %}"
 /> {% endcomment %}
+<script defer src="{% static 'js/timer.js' %}"></script>
 {% endblock %} {% block content %}
 
 <section class="page-header">
@@ -12,7 +13,6 @@
 
 <section class="card-container">
   <div class="card">
-
       <div class="card-content">
         <div class="card-img-container">
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
@@ -20,7 +20,6 @@
         <h2 class="card-title">{{ bread.name }}</h2>
         <p>{{ bread.description }}</p>
       </div>
-
      <div>
       <a href="{% url 'breads_update' bread.id %}" class="btn warn">Edit</a>
       <a href="{% url 'breads_delete' bread.id %}" class="btn danger">Delete</a>
@@ -40,5 +39,53 @@
       <button type="submit" class="btn submit">Upload Photo</button>
     </form>
   </div>
+  </section>
+ <section class="page-header">
+  <h1>Task Section</h1>
 </section>
+<h3>Add a task Form</h3>
+    <form
+      method="post" 
+      class='subsection-content'
+      action={% url 'add_task' bread.id %}
+    >
+      {% csrf_token %}
+      {{ task_form.as_p }}
+      <button type="submit" class="btn submit">Add task</button>
+    </form>
+    <section class="page-header">
+  <h1>Task List</h1>
+</section>
+<table>
+        <thead>
+          <tr><th>Name</th><th>timer</th></tr>
+        </thead>
+        <tbody>
+          {% for task in bread.task_set.all %}
+            <tr>
+              <td>{{task.name}}</td>
+              <td>{{task.hours}}:{{task.minutes}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+<section class="card-container">
+<h1>Task Slider</h1>
+  {% for task in bread.task_set.all %}
+  <div class="card">
+
+      <div class="card-content">
+        <h2>{{ task.name }}</h2>
+        <p> Timer: {% if task.hours %}{{ task.hours }}{% else %}00{% endif %}:{{ task.minutes }}</p>
+        <button> <span>Start Btn</span></button>
+        <button><span>Pause Btn</span></button>
+        <button><span>Reset Btn</span></button>
+        
+        
+      </div>
+
+  </div>
+  {% endfor %}
+</section>
+ 
 {% endblock %}

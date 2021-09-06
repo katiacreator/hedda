@@ -18,6 +18,7 @@
       alt=""
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    
     <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <title>Hedda</title>
   </head>
@@ -27,9 +28,9 @@
       <ul>
         {% comment %} {% if user.is_authenticated %} {% endcomment %}
           <li><a href="{% url 'breads_index' %}">All breads</a></li>
-          <li><a href="{% url 'tasks_index' %}">All tasks</a></li>
+          {% comment %} <li><a href="{% url 'tasks_index' %}">All tasks</a></li> {% endcomment %}
           <li><a href="{% url 'breads_create' %}">Add a bread</a></li>
-          <li><a href="{% url 'tasks_create' %}">Add a task</a></li>
+          {% comment %} <li><a href="{% url 'tasks_create' %}">Add a task</a></li> {% endcomment %}
           <li><a href="{% url 'about' %}">About</a></li>
           {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
         {% comment %} {% else %}

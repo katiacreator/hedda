@@ -7,6 +7,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import TaskForm
+# import math
 
 from django.shortcuts import render
 
@@ -41,48 +43,43 @@ class BreadDelete(DeleteView):
   model = Bread
   success_url = '/breads/'
 
-class TaskList(ListView):
-  model = Task
+# class TaskList(ListView):
+#   model = Task
 
-class TaskDetail(DetailView):
-  model = Task
+# class TaskDetail(DetailView):
+#   model = Task
 
-class TaskCreate(CreateView):
-  model = Task
-  fields = ['name', 'hours', 'minutes']
+# class TaskCreate(CreateView):
+#   model = Task
+#   fields = ['name', 'hours', 'minutes']
+def add_task(request, bread_id):
+  form = TaskForm(request.POST)
+  if form.is_valid():
+    new_task = form.save(commit=False)
+    new_task.bread_id = bread_id
+    new_task.save()
+  return redirect('breads_detail', bread_id=bread_id)
 
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class TaskUpdate(UpdateView):
-  model = Task
-  fields = ['name', 'hours', 'minutes']
+# class TaskUpdate(UpdateView):
+#   model = Task
+#   fields = ['name', 'hours', 'minutes']
 
-class TaskDelete(DeleteView):
-  model = Task
-  success_url = '/tasks/'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def tasks_index(request):
-  tasks = Task.objects.all()
-  return render(request, 'tasks/index.html', { 'tasks': tasks})
+# class TaskDelete(DeleteView):
+#   model = Task
+#   success_url = '/tasks/'
 
 def photos_index(request):
   photos = Photo.objects.all()
   return render(request, 'photos/index.html', { 'photos': photos})
+
+# def timer():
+#   countdown = 10
+#   while countdown != 0:
+#     print ('countdown', countdown)
+#     countdown = countdown - 1
+
+# timer()

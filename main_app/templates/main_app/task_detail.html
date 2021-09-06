@@ -4,6 +4,7 @@
   type="text/css"
   href="{% static 'css/sushi-index.css' %}"
 /> {% endcomment %}
+
 {% endblock %} {% block content %}
 
 <section class="page-header">
@@ -18,7 +19,7 @@
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
         </div>
         <h2 class="card-title">{{ task.name }}</h2>
-        <p>{{ task.interval }} minutes </p>
+         <p> Timer: {% if task.hours %}{{ task.hours }}{% else %}00{% endif %}:{{ task.minutes }}</p>
       </div>
     {% comment %} </a> {% endcomment %}
      <div>
