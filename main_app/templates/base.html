@@ -28,9 +28,9 @@
       <ul>
         {% comment %} {% if user.is_authenticated %} {% endcomment %}
           <li><a href="{% url 'breads_index' %}">All breads</a></li>
-          {% comment %} <li><a href="{% url 'tasks_index' %}">All tasks</a></li> {% endcomment %}
+          <li><a href="{% url 'tasks_index' %}">All tasks</a></li>
           <li><a href="{% url 'breads_create' %}">Add a bread</a></li>
-          {% comment %} <li><a href="{% url 'tasks_create' %}">Add a task</a></li> {% endcomment %}
+          <li><a href="{% url 'tasks_create' %}">Add a task</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
         {% comment %} {% else %}

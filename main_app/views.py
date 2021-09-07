@@ -25,7 +25,12 @@ def breads_index(request):
 
 def breads_detail(request, bread_id):
   bread = Bread.objects.get(id=bread_id)
-  return render(request, 'breads/detail.html', {'bread': bread})
+  # Get the tasks the bread doesn't have
+  tasks_bread_doesnt_have = Task.objects.exclude(id__in = bread.tasks.all().values_list('id'))
+  return render(request, 'breads/detail.html', {
+    # Add the tasks to be displayed
+    'bread': bread, 'tasks': tasks_bread_doesnt_have
+  })
 
 class BreadCreate(CreateView):
   model = Bread
@@ -43,43 +48,28 @@ class BreadDelete(DeleteView):
   model = Bread
   success_url = '/breads/'
 
-# class TaskList(ListView):
-#   model = Task
+class TaskList(ListView):
+  model = Task
 
-# class TaskDetail(DetailView):
-#   model = Task
+class TaskDetail(DetailView):
+  model = Task
 
-# class TaskCreate(CreateView):
-#   model = Task
-#   fields = ['name', 'hours', 'minutes']
-def add_task(request, bread_id):
-  form = TaskForm(request.POST)
-  if form.is_valid():
-    new_task = form.save(commit=False)
-    new_task.bread_id = bread_id
-    new_task.save()
-  return redirect('breads_detail', bread_id=bread_id)
+class TaskCreate(CreateView):
+  model = Task
+  fields = ['name', 'hours', 'minutes']
 
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+class TaskUpdate(UpdateView):
+  model = Task
+  fields = ['name', 'hours', 'minutes']
 
-# class TaskUpdate(UpdateView):
-#   model = Task
-#   fields = ['name', 'hours', 'minutes']
-
-# class TaskDelete(DeleteView):
-#   model = Task
-#   success_url = '/tasks/'
+class TaskDelete(DeleteView):
+  model = Task
+  success_url = '/tasks/'
 
 def photos_index(request):
   photos = Photo.objects.all()
   return render(request, 'photos/index.html', { 'photos': photos})
 
-# def timer():
-#   countdown = 10
-#   while countdown != 0:
-#     print ('countdown', countdown)
-#     countdown = countdown - 1
-
-# timer()
+def add_task(request, bread_id, task_id):
+  Bread.objects.get(id=bread_id).tasks.add(task_id)
+  return redirect('breads_detail', bread_id=bread_id)
