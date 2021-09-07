@@ -18,27 +18,30 @@
       alt=""
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
-    
-    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script
+      defer
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+    ></script>
     <title>Hedda</title>
   </head>
   <body>
     <header>
-   <nav> 
-      <ul>
-        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+      <nav>
+        <ul>
+          {% if user.is_authenticated %}
           <li><a href="{% url 'breads_index' %}">All breads</a></li>
           <li><a href="{% url 'tasks_index' %}">All tasks</a></li>
           <li><a href="{% url 'breads_create' %}">Add a bread</a></li>
           <li><a href="{% url 'tasks_create' %}">Add a task</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
-          {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
-        {% comment %} {% else %}
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'home' %}">Log In</a></li> {% endcomment %}
-        {% comment %} {% endif %} {% endcomment %}
-      </ul>
-    </nav>
+          <li><a href="{% url 'home' %}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
     </header>
     <main>{% block content %} {% endblock %}</main>
   </body>

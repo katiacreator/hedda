@@ -2,7 +2,18 @@
 {% load static %}
 {% block content %}
 <h1>Hedda home Page</h1>
-<img src="{% static 'images/landingpagecover.jpg' %}" alt="sourdough bread">
+{% comment %} <img src="{% static 'images/landingpagecover.jpg' %}" alt="sourdough bread"> {% endcomment %}
 <lottie-player src="https://assets10.lottiefiles.com/datafiles/i0DrGl1AyhF4rvhqpBUbia6zUEekgKoxRociBzZy/stopwatch.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+{% if not user.is_authenticated %}
+<section>
+  <form action="{% url 'home' %}" method="post" class="login">
+    <h1>Login</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button type="submit" class="btn submit">Login</button>
+  </form>
+</section>
+{% endif %}
 
 {% endblock %}
