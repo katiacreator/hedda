@@ -34,7 +34,7 @@ class Bread(models.Model):
 class Photo(models.Model):
   url = models.CharField(max_length=250)
   bread = models.OneToOneField(Bread, on_delete=models.CASCADE)
-  task = models.OneToOneField(Task, on_delete=models.CASCADE)
+  # task = models.OneToOneField(Task, on_delete=models.CASCADE)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 #add date to this model for photo gallery

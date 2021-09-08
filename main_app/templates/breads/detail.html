@@ -5,6 +5,7 @@
   href="{% static 'css/bread-index.css' %}"
 /> {% endcomment %}
 <script defer src="{% static 'js/timer.js' %}"></script>
+<script defer src="{% static 'js/bread-detail.js' %}"></script>
 {% endblock %} {% block content %}
 
 <section class="page-header">
@@ -14,7 +15,18 @@
   <div class="card">
     <div class="card-content">
       <div class="card-img-container">
-        {% comment %} <img src="{% static 'images/bread.svg' %}" alt="bread logo icon" /> {% endcomment %}
+        {% if bread.photo.url %}
+      <img 
+        src="{{bread.photo.url}}" 
+        alt="A photo of {{bread.name}}"
+        class="usr-img"
+      >
+    {% else %}
+      <img 
+        src="" 
+        alt="placeholder"
+      >
+    {% endif %}
       </div>
       <h2 class="card-title">{{ bread.name }}</h2>
       <p>{{ bread.description }}</p>
@@ -26,7 +38,7 @@
     <h3>Add photo</h3>
     <p id="file-name"></p>
     <form 
-      action=""
+      action="{% url 'add_bread_photo' bread.id %}"
       enctype="multipart/form-data"
       method="POST"
     >

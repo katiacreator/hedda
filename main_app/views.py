@@ -100,51 +100,16 @@ def photos_index(request):
   return render(request, 'photos/index.html', { 'photos': photos})
 
 
-def add_bread_photo(request, bread_id):
-  # photo-file will be the "name" attribute on the <input type="file">
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    # need a unique "key" for S3 / needs image file extension too
-		# uuid.uuid4().hex generates a random hexadecimal Universally Unique Identifier
-    # Add on the file extension using photo_file.name[photo_file.name.rfind('.'):]
-    key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind('.'):]
-    # just in case something goes wrong
-    try:
-      s3.upload_fileobj(photo_file, BUCKET, key)
-      # build the full url string
-      url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      # we can assign to bread_id or bread (if you have a bread object)
-      photo = Photo(url=url, bread_id=bread_id)
-      # Remove old photo if it exists
-      bread_photo = Photo.objects.filter(bread_id=bread_id)
-      if bread_photo.first():
-        bread_photo.first().delete()
-      photo.save()
-    except Exception as err:
-      print('An error occurred uploading file to S3: %s' % err)
-  return redirect('breads_detail', bread_id=bread_id)
+# def add_bread_photo(request, bread_id, photo_id):
+#   # we can assign to bread_id or bread (if you have a bread object)
+#   photo = Photo(url=url, bread_id=bread_id)
+#   # Remove old photo if it exists
+#   bread_photo = Photo.objects.filter(bread_id=bread_id)
+#   if bread_photo.first():
+#     bread_photo.first().delete()
+#   photo.save()
+#   return redirect('breads_detail', bread_id=bread_id)
 
-def add_task_photo(request, task_id):
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    # need a unique "key" for S3 / needs image file extension too
-		# uuid.uuid4().hex generates a random hexadecimal Universally Unique Identifier
-    # Add on the file extension using photo_file.name[photo_file.name.rfind('.'):]
-    key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind('.'):]
-    # just in case something goes wrong
-    try:
-      s3.upload_fileobj(photo_file, BUCKET, key)
-      # build the full url string
-      url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      # we can assign to bread_id or bread (if you have a bread object)
-      photo = Photo(url=url, task_id=task_id)
-      # Remove old photo if it exists
-      task_photo = Photo.objects.filter(task_id=task_id)
-      if task_photo.first():
-        task_photo.first().delete()
-      photo.save()
-    except Exception as err:
-      print('An error occurred uploading file to S3: %s' % err)
-  return redirect('tasks_detail', task_id=task_id)
+def add_bread_photo(request, bread_id, photo_id):
+  Bread.objects.get(id=bread_id).photos.add(photo_id)
+  return redirect('breads_detail', bread_id=bread_id)
