@@ -11,34 +11,83 @@ let minuteEl;
 
 /*------------------------ Cached Element References ------------------------*/
 const startBtns = document.querySelectorAll('.start')
-// console.log('startBtns: ', startBtns);
+const stopBtns = document.querySelectorAll('.stop')
+const pauseBtns = document.querySelectorAll('.pause')
+const resetBtns = document.querySelectorAll('.reset')
+
 
 let starts = Array.from(startBtns)
-// console.log('starts: ', starts);
-// const pauseBtns = document.querySelectorAll('.pause')
-// const resetBtns = document.querySelectorAll('.reset')
-// const stopBtns = document.querySelectorAll('.stop')
-// console.log('pauseBtns: ', pauseBtns);
-// console.log('resetBtns: ', resetBtns);
-// console.log('stopBtns: ', stopBtns);
+let stops = Array.from(stopBtns)
+let pauses = Array.from(pauseBtns)
+let resets = Array.from(resetBtns)
 
 /*----------------------------- Event Listeners -----------------------------*/
-starts.forEach((startBtn, id) => {
-  // console.log(`startBtn${id}`)
+starts.forEach((startBtn) => {
   startBtn.addEventListener('click', (e) => {
-    handleClick(e)
+    handleStart(e)
   })
 })
 
+stops.forEach((stopBtn) => {
+  stopBtn.addEventListener('click', (e) => {
+    handleStop(e)
+  })
+})
+
+// pauses.forEach((pauseBtn) => {
+//   pauseBtn.addEventListener('click', (e) => {
+//     handlePause(e)
+//   })
+// })
+
+// resets.forEach((resetBtn) => {
+//   resetBtn.addEventListener('click', (e) => {
+//     handleReset(e)
+//   })
+// })
+
 /*-------------------------------- Functions --------------------------------*/
-// function startTime()
-// function pauseTime()
-// function resetTime()
-// function stopTime()
-// function convertToSeconds()
-function handleClick(e){
-  console.log(e.target.id)//rendered 28 which matches id 28
+// once clicked pause and reset show
+function startTimer(){
+  console.log('start timer', startBtnId)
 }
+
+// //how do i unpause without resetting time?!!!!
+// function pauseTimer(){
+//   console.log('pause timer', pauseBtnId)
+// }
+
+//only shows when timer runs out on its own, once clicked button is hidden only reset shows
+function stopTimer(){
+  console.log('stop timer', stopBtnId)
+}
+
+// //only this button shows, once clicked then start and pause show
+// function resetTimer(){
+//   console.log('reset timer', resetBtnId)
+// }
+
+// function convertToSeconds()
+function handleStart(e){
+  startBtnId = parseInt(e.target.id)
+  startTimer()
+  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
+}
+
+function handleStop(e){
+  stopBtnId = parseInt(e.target.id)
+  stopTimer()
+}
+
+// function handlePause(e){
+//   pauseBtnId = parseInt(e.target.id)
+//   pauseTimer()
+// }
+// function handleReset(e){
+//   resetBtnId = parseInt(e.target.id)
+//   resetTimer()
+// }
+
 // //* updated code starts here *//
 // let timerEl = document.getElementById('timer').innerHTML;
 // let hours = parseInt(document.getElementById('hour').innerHTML);
