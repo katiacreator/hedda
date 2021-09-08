@@ -13,13 +13,25 @@
 
 <section class="card-container">
   {% for task in task_list %}
-  <div class="card">
     <a href="{% url 'tasks_detail' task.id %}">
+    <div class="card">
       <div class="card-content">
         <h2>{{ task.name }}</h2>
-        <p> Timer: {% if task.hours %}{{ task.hours }}{% else %}00{% endif %}:{{ task.minutes }}</p>
+        <p id="{{ task.id }}">{{ task.hours }}:{{ task.minutes }}</p>
       </div>
     </a>
+      <button class="start" id="{{ task.id }}">
+        <span>Start</span>
+      </button>
+      <button class="pause" id="{{ task.id }}">
+        <span>Pause</span>
+      </button>
+      <button class="reset" id="{{ task.id }}">
+        <span>Reset</span>
+      </button>
+      <button class="stop" id="{{ task.id }}">
+        <span>Stop</span>
+      </button>
   </div>
   {% endfor %}
 </section>

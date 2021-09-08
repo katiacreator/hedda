@@ -7,7 +7,7 @@ class Task(models.Model):
   name = models.CharField(max_length=100)
   hours = models.CharField(max_length=2)
   minutes = models.CharField(max_length=2)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  # user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   # bread = models.ForeignKey(Bread, on_delete=models.CASCADE)
   

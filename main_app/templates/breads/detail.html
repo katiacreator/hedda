@@ -5,7 +5,7 @@
   href="{% static 'css/bread-index.css' %}"
 /> {% endcomment %}
 <script defer src="{% static 'js/timer.js' %}"></script>
-<script defer src="{% static 'js/bread-detail.js' %}"></script>
+{% comment %} <script defer src="{% static 'js/bread-detail.js' %}"></script> {% endcomment %}
 {% endblock %} {% block content %}
 
 <section class="page-header">
@@ -77,20 +77,30 @@
         </p>
       {% endif %}
     </div>
+
+
+
 <h1>Task Slider</h1>
 {% if bread.tasks.count %}
   {% for task in bread.tasks.all %}
-  <div class="card">
+  <div class="card" id="taskid">
       <div class="card-content">
         <h2>{{ task.name }}</h2>
-        <p> Timer: {% if task.hours %}{{ task.hours }}{% else %}00{% endif %}:{{ task.minutes }}</p>
-        <button> <span>Start Btn</span></button>
-        <button><span>Pause Btn</span></button>
-        <button><span>Reset Btn</span></button>
-         <div class="subsection-content">
-        {% endfor %}
+        <p id="timer">
+          <span id="hour">{{ task.hours }}</span>:<span id="min">{{ task.minutes }}</span>
+        </p>
+        <button>
+          <span>Start Btn</span>
+        </button>
+        <button>
+          <span>Pause Btn</span>
+        </button>
+        <button>
+          <span>Reset Btn</span>
+        </button>
+      {% endfor %}
       {% endif %}
-    </div>
-</section>
- </div>
+      </div>
+  </section>
+</div>
 {% endblock %}

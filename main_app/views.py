@@ -10,8 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
-S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
-BUCKET = 'hedda-9721'
+# S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
+# BUCKET = 'hedda-9721'
 
 
 from django.shortcuts import render

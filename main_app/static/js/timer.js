@@ -1,68 +1,108 @@
-console.log('this is connected')
-
-//to append html markup
-const mainContent = document.querySelector("#content");
-//console.log("mainContent: ", mainContent);
-
-/* OTHER VARIABLES */
+console.log("this is connected");
+/*---------------------------- Variables (state) ----------------------------*/
+let startBtnId;
+let seconds;
+let minutes;
+let hours;
+let totalTimeLeft;
+let timerEl;
 let hourEl;
-let minEl
-let timeLeft = ?;
-let timerIntervalId;
-let timeOutId;
+let minuteEl;
 
-/****************** */ //HTML Template Literal to append to content*********************** */
-let markup = `
-<button id="startBtn" class="btn">START</button>
-</section>`;
-mainContent.innerHTML = markup;
+/*------------------------ Cached Element References ------------------------*/
+const startBtns = document.querySelectorAll('.start')
+// console.log('startBtns: ', startBtns);
 
-const startBtn = document.querySelector("#startBtn");
-/* EVENT LISTENERS */
-//This starts the entire quiz process with clicking the start button
-startBtn.addEventListener("click", startQuiz);
+let starts = Array.from(startBtns)
+// console.log('starts: ', starts);
+// const pauseBtns = document.querySelectorAll('.pause')
+// const resetBtns = document.querySelectorAll('.reset')
+// const stopBtns = document.querySelectorAll('.stop')
+// console.log('pauseBtns: ', pauseBtns);
+// console.log('resetBtns: ', resetBtns);
+// console.log('stopBtns: ', stopBtns);
 
-function startQuiz() {
-  //console.log("has been clicked");
-  showQuestion(questionNum); //function will append first question
+/*----------------------------- Event Listeners -----------------------------*/
+starts.forEach((smartBtn, id) => {
+  // console.log(`smartBtn${id}`)
+  smartBtn.addEventListener('click', (e) => {
+    handleClick(e)
+  })
+})
+
+/*-------------------------------- Functions --------------------------------*/
+// function startTime()
+// function pauseTime()
+// function resetTime()
+// function stopTime()
+// function convertToSeconds()
+function handleClick (){
+  console.log('this was clicked')
 }
+// //* updated code starts here *//
+// let timerEl = document.getElementById('timer').innerHTML;
+// let hours = parseInt(document.getElementById('hour').innerHTML);
+// let minutes = parseInt(document.getElementById('min').innerHTML);
+// console.log('minutes: ', minutes);
+// console.log('hours: ', hours);
+// console.log('timerEl : ', timerEl );
+// let seconds;
+// console.log('seconds: ', seconds);
 
-mainContent.innerHTML = markup;
-  timerEl = document.querySelector("#timer");
-  questionTimer();
-  choiceABtn = document.querySelector(".choiceA");
-  choiceABtn.addEventListener("click", (e) => {
-    if (timerIntervalId || timeOutId) {
-      clearInterval(timerIntervalId);
-      clearTimeout(timeOutId);
-      evaluateAnswerGiven(e);
-    }
-  });
+// secondsLeft = () => hours * 60 + minutes * 60
+// seconds = secondsLeft()
+// console.log(seconds)
+// let minsLeft;
+// let hourMin;
 
-  //Timer Function-run this every 15 seconds or after each choice is clicked
-function questionTimer() {
-  //setInterval for a tick
-  timeLeft = 15;
-  // if (timerIntervalId) {
-  //   clearInterval(timerIntervalId)
-  // }
-  timerIntervalId = setInterval(function () {
-    timerEl.textContent = `Time Left:${timeLeft}`;
-    timeLeft -= 1;
-  }, 1000);
-  //setInterval
+// minsLeft = Math.fround(seconds / 60)
+// console.log('minsLeft: ', minsLeft);
 
-  timeOutId = setTimeout(function () {
-    //console.log("setTimeout function is bein run")
-    clearInterval(timerIntervalId);
-    //add play ticking sound
-    if (timeLeft === 0) {
-      timerEl.textContent = `Time Left:${0}`;
-      score;
-      console.log("score: ", score);
-      setNextQuestion();
-    }
-  }, 15500);
-}
+// const countdown = setInterval(function() {
+//   // seconds--;
+//   secondsLeft = Math.fround(minutes * 60)
+//   console.log('secondsLeft: ', secondsLeft);
+//   hoursLeft = Math.fround(minutes / 60)
+//   console.log('hoursLeft: ', hoursLeft);
+//   minsLeft--
+//   hourLeft--
+//   if (minsLeft <= 0 && hoursLeft <= 0) clearInterval(countdown);
+// }, 10000);
 
+// console.log('countdown: ', countdown);
+// console.log(timerEl)
 
+//PSEUDOCODE
+//* START TIMER */
+// start a timer based on the time inputs from the user
+// let timerEl = document.getElementById("timer").innerHTML;
+// console.log("timerEl : ", timerEl);
+// the user will put in hour input and minutes input for standard baking times
+// let hours = parseInt(document.getElementById("hour").innerHTML);
+// let minutes = parseInt(document.getElementById("min").innerHTML);
+// console.log("minutes: ", minutes);
+// console.log("hours: ", hours);
+// hours and minutes need to be converted to the same unit- seconds?
+// let hours = Math.floor((1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+// let minutes = Math.floor((1000 * 60 * 60) / (1000 * 60));
+// let seconds = Math.floor((1000 * 60) / 1000);
+// html needs to show in real time the hour and minute input changing so append innerHTML?
+//* PAUSE TIMER */
+// the user needs to be able to pause (button will be dynamically rendered) the time and restart from the time they paused it
+//once the timer complete they need to be able to stop the timer sound
+//* STOP TIMER */
+// once the stop button which will need to be dynamically rendered, the timer needs to be automatically reset and a notication that the task has been completed
+//* RESET TIMER */
+//maybe the user pressed the reset button for these timers
+// whatever timer function I get going needs to be able to run for multiple tasks at once, this can be achieved by identifying it is a seperate dynamic element by id created on for loop?
+
+// let timerIntervalId;
+// let timeOutId;
+
+// function startTimer(){
+//   timeLeft = 15;
+//   timerIntervalId = setInterval(function () {
+//     timerEl.textContent = `Time Left:${timeLeft}`;
+//     timeLeft -= 1;
+//   }, 1000);
+// }
