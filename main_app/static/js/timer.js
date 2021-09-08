@@ -23,9 +23,9 @@ let starts = Array.from(startBtns)
 // console.log('stopBtns: ', stopBtns);
 
 /*----------------------------- Event Listeners -----------------------------*/
-starts.forEach((smartBtn, id) => {
-  // console.log(`smartBtn${id}`)
-  smartBtn.addEventListener('click', (e) => {
+starts.forEach((startBtn, id) => {
+  // console.log(`startBtn${id}`)
+  startBtn.addEventListener('click', (e) => {
     handleClick(e)
   })
 })
@@ -36,8 +36,8 @@ starts.forEach((smartBtn, id) => {
 // function resetTime()
 // function stopTime()
 // function convertToSeconds()
-function handleClick (){
-  console.log('this was clicked')
+function handleClick(e){
+  console.log(e.target.id)//rendered 28 which matches id 28
 }
 // //* updated code starts here *//
 // let timerEl = document.getElementById('timer').innerHTML;
