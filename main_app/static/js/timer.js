@@ -79,9 +79,7 @@ function pauseTimer(){
 
 function countdown(){
   if(hours == 0 && minutes == 0 && seconds == 0){
-      hours = 00;
-      minutes = 00;
-      seconds = 00;
+      clearInterval(timer)
   } else if(seconds != 0){
       seconds--;
   } else if(minutes != 0 && seconds == 0){
