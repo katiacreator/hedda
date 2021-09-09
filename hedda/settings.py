@@ -68,8 +68,8 @@ WSGI_APPLICATION = 'hedda.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'hedda.sqlite3',
+        'ENGINE': env('PRODUCTION_DB_ENGINE') or 'django.db.backends.sqlite3',
+        'NAME': env('PRODUCTION_DB') or BASE_DIR / 'hedda.sqlite3',
     }
 }
 
