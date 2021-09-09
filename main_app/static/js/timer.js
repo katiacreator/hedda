@@ -13,6 +13,7 @@ let interval;
 let timerEl;
 let hourEl;
 let minuteEl;
+let secondEl;
 
 hourEl = document.querySelector("#hour");
 console.log("hourEl: ", hourEl);
@@ -21,6 +22,10 @@ console.log("hours: ", hours); //gives the numeric hour value to countdown from
 minuteEl = document.querySelector("#minute");
 minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
 console.log("minutes: ", minutes);
+secondEl = document.querySelector("#second");
+seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
+console.log('seconds: ', seconds);
+
 
 /*------------------------ Cached Element References ------------------------*/
 const startBtns = document.querySelectorAll(".start");
@@ -57,16 +62,22 @@ resets.forEach((resetBtn) => {
 function startTimer() {
   console.log("start timer", startBtnId);
   timerInterval = setInterval(function () {
-    (hours <= 0) ? hourEl.textContent = 0 : hourEl.textContent = `${hours}`
     hours--;
+    (hours <= 0) ? hourEl.textContent = 00 : hourEl.textContent = `${hours}`
     minutes--;
     if (minutes <= 0) {
-      minuteEl.textContent = 0
+      minuteEl.textContent = 00
     } else {
       minuteEl.textContent = `${minutes}`
     }
-    console.log(hours, minutes);
-  }, 1000);
+    seconds--
+    if (seconds <= 0) {
+      secondEl.textContent = 00
+    } else {
+      secondEl.textContent = `${minutes}`
+    }
+    console.log(hours, minutes, seconds);
+  }, 1000);//60000 equals 1 minute
 }
 
 //only shows when timer runs out on its own, once clicked button is hidden only reset shows
@@ -78,6 +89,8 @@ function stopTimer() {
 // function resetTimer(){
 //   console.log('reset timer', resetBtnId)
 // }
+
+
 
 // function convertToSeconds()
 function handleStart(e) {
