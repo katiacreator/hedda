@@ -1,11 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-{% comment %} <link
+{% extends 'base.html' %} {% load static %} {% block head %} {% comment %}
+<link
   rel="stylesheet"
   type="text/css"
   href="{% static 'css/sushi-index.css' %}"
-/> {% endcomment %}
-
-{% endblock %} {% block content %}
+/>
+{% endcomment %} {% endblock %} {% block content %}
 
 <section class="page-header">
   <h1>Task List</h1>
@@ -13,25 +12,21 @@
 
 <section class="card-container">
   {% for task in task_list %}
-    <a href="{% url 'tasks_detail' task.id %}">
-    <div class="card">
-      <div class="card-content">
+  <div class="card">
+    <div class="card-content">
+      <a href="{% url 'tasks_detail' task.id %}">
         <h2>{{ task.name }}</h2>
-        <p id="{{ task.id }}">{{ task.hours }}:{{ task.minutes }}</p>
+      </a>
+      <div class="timer" id="{{ task.id }}">
+        <span id="hour">{{ task.hours }}</span>:
+        <span id="minute">{{ task.minutes }}</span>
       </div>
-    </a>
-      <button class="start" id="{{ task.id }}">
-        Start
-      </button>
-      <button class="pause" id="{{ task.id }}">
-        Pause
-      </button>
-      <button class="reset" id="{{ task.id }}">
-        Reset
-      </button>
-      <button class="stop" id="{{ task.id }}">
-        Stop
-      </button>
+    </div>
+    <div class="controls">
+      <button class="start" id="{{ task.id }}">Start</button>
+      <button class="reset" id="{{ task.id }}">Reset</button>
+      <button class="stop" id="{{ task.id }}">Stop</button>
+    </div>
   </div>
   {% endfor %}
 </section>
