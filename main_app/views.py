@@ -84,6 +84,9 @@ class TaskCreate(LoginRequiredMixin, CreateView):
   model = Task
   fields = ['name', 'hours', 'minutes']
 
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
   model = Task
