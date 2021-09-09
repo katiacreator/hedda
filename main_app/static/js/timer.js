@@ -15,30 +15,31 @@ let hourEl;
 let minuteEl;
 let secondEl;
 
-countdownEl = document.querySelectorAll(".countdown")
-// console.log('countdownEl: ', countdownEl);
-hourEl = document.querySelectorAll("#hour");
-// console.log("hourEl: ", hourEl);
-hours = parseInt(hourEl.innerHTML);
-console.log("hours: ", hours); //gives the numeric hour value to countdown from
-minuteEl = document.querySelectorAll("#minute");
-// console.log('minuteEl: ', minuteEl);
-minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
-console.log("minutes: ", minutes);
-// secondEl = document.querySelectorAll("#second");
-seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
-console.log("seconds: ", seconds);
+
 
 /*------------------------ Cached Element References ------------------------*/
+countdownDivs = document.querySelectorAll(".countdown")
+hourSpans = document.querySelectorAll("#hour");
+minuteSpans = document.querySelectorAll("#minute");
+secondSpans = document.querySelectorAll("#second");
+let countdownEls = Array.from(countdownDivs);
+let hourEls = Array.from(hourSpans);
+let minuteEls = Array.from(minuteSpans);
+let secondEls = Array.from(secondSpans);
+
 const startBtns = document.querySelectorAll(".start");
 const stopBtns = document.querySelectorAll(".stop");
 const resetBtns = document.querySelectorAll(".reset");
-// const pauseBtns = document.querySelectorAll('.pause')
-
 let starts = Array.from(startBtns);
 let stops = Array.from(stopBtns);
 let resets = Array.from(resetBtns);
-// let pauses = Array.from(pauseBtns)
+
+/* hours = parseInt(hourEl.innerHTML);
+console.log("hours: ", hours); //gives the numeric hour value to countdown from
+minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
+console.log("minutes: ", minutes);
+seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
+console.log("seconds: ", seconds); */
 
 /*----------------------------- Event Listeners -----------------------------*/
 starts.forEach((startBtn) => {
