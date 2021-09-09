@@ -24,8 +24,7 @@ minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to coun
 console.log("minutes: ", minutes);
 secondEl = document.querySelector("#second");
 seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
-console.log('seconds: ', seconds);
-
+console.log("seconds: ", seconds);
 
 /*------------------------ Cached Element References ------------------------*/
 const startBtns = document.querySelectorAll(".start");
@@ -62,22 +61,10 @@ resets.forEach((resetBtn) => {
 function startTimer() {
   console.log("start timer", startBtnId);
   timerInterval = setInterval(function () {
-    hours--;
-    (hours <= 0) ? hourEl.textContent = 00 : hourEl.textContent = `${hours}`
-    minutes--;
-    if (minutes <= 0) {
-      minuteEl.textContent = 00
-    } else {
-      minuteEl.textContent = `${minutes}`
-    }
-    seconds--
-    if (seconds <= 0) {
-      secondEl.textContent = 00
-    } else {
-      secondEl.textContent = `${minutes}`
-    }
+    countdown();
+    displayTime();
     console.log(hours, minutes, seconds);
-  }, 1000);//60000 equals 1 minute
+  }, 1000);
 }
 
 //only shows when timer runs out on its own, once clicked button is hidden only reset shows
@@ -90,8 +77,40 @@ function stopTimer() {
 //   console.log('reset timer', resetBtnId)
 // }
 
+function countdown() {
+  if (hours == 0 && minutes == 0 && seconds == 0) {
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+  } else if (seconds != 0) {
+    seconds--;
+  } else if (minutes != 0 && seconds == 0) {
+    seconds = 59;
+    minutes--;
+  } else if (hours != 0 && minutes == 0) {
+    minutes = 60;
+    hours--;
+  }
+  return;
+}
 
-
+function displayTime() {
+  if (hours <= 0) {
+    hourEl.textContent = 00;
+  } else {
+    hourEl.textContent = `${hours}`;
+  }
+  if (minutes <= 0) {
+    minuteEl.textContent = 00;
+  } else {
+    minuteEl.textContent = `${minutes}`;
+  }
+  if (seconds <= 0) {
+    secondEl.textContent = 00;
+  } else {
+    secondEl.textContent = `${seconds}`;
+  }
+}
 // function convertToSeconds()
 function handleStart(e) {
   startBtnId = parseInt(e.target.id);
