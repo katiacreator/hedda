@@ -13,20 +13,28 @@
 
 <section class="card-container">
   <div class="card">
-    {% comment %} <a href="{% url 'sushi_detail' sushi.id %}"> {% endcomment %}
       <div class="card-content">
         <div class="card-img-container">
           {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
         </div>
         <h2 class="card-title">{{ task.name }}</h2>
-         <p> Timer: {% if task.hours %}{{ task.hours }}{% else %}00{% endif %}:{{ task.minutes }}</p>
+         <div class="countdown" id="{{ task.id }}">
+        <span id="hour">{{ task.hours }}</span>:
+        <span id="minute">{{ task.minutes }}</span>:
+        <span id="second">00</span>
       </div>
-    {% comment %} </a> {% endcomment %}
+       <div class="controls">
+      <button class="start" id="{{ task.id }}">Start</button>
+      <button class="reset" id="{{ task.id }}">Reset</button>
+      <button class="stop" id="{{ task.id }}">Stop</button>
+    </div>
+    </div>
+
      <div>
       <a href="{% url 'tasks_update' task.id %}" class="btn warn">Edit</a>
       <a href="{% url 'tasks_delete' task.id %}" class="btn danger">Delete</a>
     </div>
-    <h3>Add photo</h3>
+    {% comment %} <h3>Add photo</h3>
     <p id="file-name"></p>
     <form 
       action=""
@@ -39,7 +47,7 @@
         <input type="file" name="photo-file" id="file-input">
       </label>
       <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
+    </form> {% endcomment %}
   </div>
 </section>
 {% endblock %}

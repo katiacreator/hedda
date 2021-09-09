@@ -10,71 +10,51 @@ let minutes;
 let hours;
 let interval;
 
-let countdownEl;
+let timerEl;
 let hourEl;
 let minuteEl;
 let secondEl;
 
+hourEl = document.querySelector("#hour");
+console.log("hourEl: ", hourEl);
+hours = parseInt(hourEl.innerHTML);
+console.log("hours: ", hours); //gives the numeric hour value to countdown from
+minuteEl = document.querySelector("#minute");
+minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
+console.log("minutes: ", minutes);
+secondEl = document.querySelector("#second");
+seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
+console.log('seconds: ', seconds);
 
 
 /*------------------------ Cached Element References ------------------------*/
-countdownDivs = document.querySelectorAll(".countdown")
-hourSpans = document.querySelectorAll("#hour");
-minuteSpans = document.querySelectorAll("#minute");
-secondSpans = document.querySelectorAll("#second");
-let countdownEls = Array.from(countdownDivs);
-let hourEls = Array.from(hourSpans);
-let minuteEls = Array.from(minuteSpans);
-let secondEls = Array.from(secondSpans);
+const startBtn = document.querySelector(".start");
+const stopBtn = document.querySelector(".stop");
+const resetBtn = document.querySelector(".reset");
 
-const startBtns = document.querySelectorAll(".start");
-const stopBtns = document.querySelectorAll(".stop");
-const resetBtns = document.querySelectorAll(".reset");
-let starts = Array.from(startBtns);
-let stops = Array.from(stopBtns);
-let resets = Array.from(resetBtns);
-
-/* hours = parseInt(hourEl.innerHTML);
-console.log("hours: ", hours); //gives the numeric hour value to countdown from
-minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
-console.log("minutes: ", minutes);
-seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
-console.log("seconds: ", seconds); */
 
 /*----------------------------- Event Listeners -----------------------------*/
-starts.forEach((startBtn) => {
-  startBtn.addEventListener("click", (e) => {
-    //console.log(e)//gives me id 3 for each button clicked
-    handleStart(e);
-  });
+
+startBtn.addEventListener("click", (e) => {
+  handleStart(e);
 });
 
-stops.forEach((stopBtn) => {
-  stopBtn.addEventListener("click", (e) => {
-    handleStop(e);
-  });
+stopBtn.addEventListener("click", (e) => {
+  handleStop(e);
 });
 
-resets.forEach((resetBtn) => {
-  resetBtn.addEventListener("click", (e) => {
-    handleReset(e);
-  });
+resetBtn.addEventListener("click", (e) => {
+  handleReset(e);
 });
+
 
 /*-------------------------------- Functions --------------------------------*/
-
-function handleStart(e) {
-  startBtnId = parseInt(e.target.id);
-  startTimer();
-  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
-}
-
 // once clicked pause and reset show
 function startTimer() {
   console.log("start timer", startBtnId);
   timerInterval = setInterval(function () {
-    countdown();
-    displayTime();
+    countdown()
+    displayTime()
     console.log(hours, minutes, seconds);
   }, 1000);
 }
@@ -89,42 +69,46 @@ function stopTimer() {
 //   console.log('reset timer', resetBtnId)
 // }
 
-function countdown() {
-  if (hours == 0 && minutes == 0 && seconds == 0) {
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-  } else if (seconds != 0) {
-    seconds--;
-  } else if (minutes != 0 && seconds == 0) {
-    seconds = 59;
-    minutes--;
-  } else if (hours != 0 && minutes == 0) {
-    minutes = 60;
-    hours--;
+function countdown(){
+  if(hours == 0 && minutes == 0 && seconds == 0){
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+  } else if(seconds != 0){
+      seconds--;
+  } else if(minutes != 0 && seconds == 0){
+      seconds = 59;
+      minutes--;
+  } else if(hours != 0 && minutes == 0){
+      minutes = 60;
+      hours--;
   }
   return;
 }
 
-function displayTime() {
+function displayTime(){
   if (hours <= 0) {
-    hourEl.textContent = 00;
+    hourEl.textContent = 00
   } else {
-    hourEl.textContent = `${hours}`;
+    hourEl.textContent = `${hours}`
   }
   if (minutes <= 0) {
-    minuteEl.textContent = 00;
+    minuteEl.textContent = 00
   } else {
-    minuteEl.textContent = `${minutes}`;
+    minuteEl.textContent = `${minutes}`
   }
   if (seconds <= 0) {
-    secondEl.textContent = 00;
+    secondEl.textContent = 00
   } else {
-    secondEl.textContent = `${seconds}`;
+    secondEl.textContent = `${seconds}`
   }
 }
 // function convertToSeconds()
-
+function handleStart(e) {
+  startBtnId = parseInt(e.target.id);
+  startTimer();
+  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
+}
 
 function handleStop(e) {
   stopBtnId = parseInt(e.target.id);
