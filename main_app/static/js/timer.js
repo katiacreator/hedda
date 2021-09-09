@@ -4,13 +4,15 @@ console.log("this is connected");
 let startBtnId;
 let stopBtnId;
 let resetBtnId;
+let pauseBtnId;
 
 let seconds;
 let minutes;
 let hours;
 let timer;
+let interval = 0
 
-let timerEl;
+let countdownEl;
 let hourEl;
 let minuteEl;
 let secondEl;
@@ -41,22 +43,23 @@ startBtn.addEventListener("click", (e) => {
 });
 
 stopBtn.addEventListener("click", (e) => {
-  stopSound(e);
-  console.log('stop sound clicked')
+  handleStop(e);
+  console.log('stop clicked')
 });
 
 resetBtn.addEventListener("click", (e) => {
   handleReset(e);
 });
+
 pauseBtn.addEventListener("click", (e) => {
   handlePause(e);
 });
 
 
 /*-------------------------------- Functions --------------------------------*/
+
 // once clicked pause and reset show
 function startTimer() {
-  console.log("start timer", startBtnId);
   timer = setInterval(function () {
     countdown()
     displayTime()
@@ -68,19 +71,11 @@ function startTimer() {
 function pauseTimer(){
   console.log('pause timer clicked', pauseBtnId)
   hours = parseInt(hourEl.innerHTML);
-  console.log('hours: ', hours);
+  // console.log('hours: ', hours);
   minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
   seconds = parseInt(secondEl.innerHTML); 
   clearInterval(timer)
 }
-
-//only shows when timer runs out on its own, once clicked button is hidden only reset shows
-function stopSound() {
-  console.log("stop sound", stopBtnId);
-  
-}
-
-
 
 function countdown(){
   if(hours == 0 && minutes == 0 && seconds == 0){
@@ -99,6 +94,7 @@ function countdown(){
   return;
 }
 
+//condense this into one big if using && ?
 function displayTime(){
   if (hours <= 0) {
     hourEl.textContent = 00
@@ -116,7 +112,21 @@ function displayTime(){
     secondEl.textContent = `${seconds}`
   }
 }
-// function convertToSeconds()
+
+function stopTimer(){
+  hours = 00
+  minutes = 00
+  seconds = 00
+  console.log('stopTimer is being called', hours, minutes, seconds)
+  
+}
+// function resetTimer(){
+//   console.log('resetTimer is being called')
+//   countdownEl = `<span id="hour">{{ task.hours }}</span>:
+//         <span id="minute">{{ task.minutes }}</span>:
+//         <span id="second">00</span>`
+// }
+
 function handleStart(e) {
   startBtnId = parseInt(e.target.id);
   startTimer();
@@ -125,10 +135,26 @@ function handleStart(e) {
 
 function handleStop(e) {
   stopBtnId = parseInt(e.target.id);
-  stopSound();
+  stopTimer();
 }
+
 function handlePause(e){
   pauseBtnId = parseInt(e.target.id)
   pauseTimer()
 }
 
+function handleReset(e){
+  resetBtnId = parseInt(e.target.id)
+  resetTimer()
+}
+
+//only shows when timer runs out on its own, once clicked button is hidden only reset shows
+function playSound(e) {
+  console.log("play sound", e.target.id);
+  
+}
+
+function stopSound(e) {
+  console.log("stop sound", stopBtnId);
+  
+}
