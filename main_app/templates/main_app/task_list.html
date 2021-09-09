@@ -17,7 +17,7 @@
       <a href="{% url 'tasks_detail' task.id %}">
         <h2>{{ task.name }}</h2>
       </a>
-      <div class="timer" id="{{ task.id }}">
+      <div class="countdown" id="{{ task.id }}">
         <span id="hour">{{ task.hours }}</span>:
         <span id="minute">{{ task.minutes }}</span>:
         <span id="second">00</span>

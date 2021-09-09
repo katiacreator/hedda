@@ -10,19 +10,22 @@ let minutes;
 let hours;
 let interval;
 
-let timerEl;
+let countdownEl;
 let hourEl;
 let minuteEl;
 let secondEl;
 
-hourEl = document.querySelector("#hour");
-console.log("hourEl: ", hourEl);
+countdownEl = document.querySelectorAll(".countdown")
+// console.log('countdownEl: ', countdownEl);
+hourEl = document.querySelectorAll("#hour");
+// console.log("hourEl: ", hourEl);
 hours = parseInt(hourEl.innerHTML);
 console.log("hours: ", hours); //gives the numeric hour value to countdown from
-minuteEl = document.querySelector("#minute");
+minuteEl = document.querySelectorAll("#minute");
+// console.log('minuteEl: ', minuteEl);
 minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
 console.log("minutes: ", minutes);
-secondEl = document.querySelector("#second");
+// secondEl = document.querySelectorAll("#second");
 seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
 console.log("seconds: ", seconds);
 
@@ -40,6 +43,7 @@ let resets = Array.from(resetBtns);
 /*----------------------------- Event Listeners -----------------------------*/
 starts.forEach((startBtn) => {
   startBtn.addEventListener("click", (e) => {
+    //console.log(e)//gives me id 3 for each button clicked
     handleStart(e);
   });
 });
@@ -57,6 +61,13 @@ resets.forEach((resetBtn) => {
 });
 
 /*-------------------------------- Functions --------------------------------*/
+
+function handleStart(e) {
+  startBtnId = parseInt(e.target.id);
+  startTimer();
+  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
+}
+
 // once clicked pause and reset show
 function startTimer() {
   console.log("start timer", startBtnId);
@@ -112,11 +123,7 @@ function displayTime() {
   }
 }
 // function convertToSeconds()
-function handleStart(e) {
-  startBtnId = parseInt(e.target.id);
-  startTimer();
-  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
-}
+
 
 function handleStop(e) {
   stopBtnId = parseInt(e.target.id);
