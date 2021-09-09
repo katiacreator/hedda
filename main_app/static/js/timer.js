@@ -8,7 +8,7 @@ let resetBtnId;
 let seconds;
 let minutes;
 let hours;
-let interval;
+let timer;
 
 let timerEl;
 let hourEl;
@@ -18,18 +18,19 @@ let secondEl;
 hourEl = document.querySelector("#hour");
 console.log("hourEl: ", hourEl);
 hours = parseInt(hourEl.innerHTML);
-console.log("hours: ", hours); //gives the numeric hour value to countdown from
+// console.log("hours: ", hours); //gives the numeric hour value to countdown from
 minuteEl = document.querySelector("#minute");
 minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
-console.log("minutes: ", minutes);
+// console.log("minutes: ", minutes);
 secondEl = document.querySelector("#second");
 seconds = parseInt(secondEl.innerHTML); //gives the numeric minute value to countdown from
-console.log('seconds: ', seconds);
+// console.log('seconds: ', seconds);
 
 
 /*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector(".start");
 const stopBtn = document.querySelector(".stop");
+const pauseBtn = document.querySelector(".pause");
 const resetBtn = document.querySelector(".reset");
 
 
@@ -40,11 +41,18 @@ startBtn.addEventListener("click", (e) => {
 });
 
 stopBtn.addEventListener("click", (e) => {
-  handleStop(e);
+  stopSound(e);
+  console.log('stop sound clicked')
+});
+
+pauseBtn.addEventListener("click", (e) => {
+  pauseTimer()
+  console.log('pause btn clicked')
 });
 
 resetBtn.addEventListener("click", (e) => {
-  handleReset(e);
+  resetTimer()
+  console.log('reset btn clicked')
 });
 
 
@@ -52,28 +60,47 @@ resetBtn.addEventListener("click", (e) => {
 // once clicked pause and reset show
 function startTimer() {
   console.log("start timer", startBtnId);
-  timerInterval = setInterval(function () {
+  timer = setInterval(function () {
     countdown()
     displayTime()
     console.log(hours, minutes, seconds);
   }, 1000);
+  // clearInterval(timer)
 }
 
+//only this button shows, once clicked then start and pause show
+function pauseTimer(){
+  console.log('pause timer clicked', pauseBtnId)
+  hours = parseInt(hourEl.innerHTML);
+  minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
+  seconds = parseInt(secondEl.innerHTML); 
+  console.log('seconds: ', seconds);
+}
+
+function resetTimer(){
+  console.log('reset timer clicked', resetBtnId)
+  hours = parseInt(hourEl.innerHTML);
+  minutes = parseInt(minuteEl.innerHTML); //gives the numeric minute value to countdown from
+  seconds = parseInt(secondEl.innerHTML); 
+  console.log('minutes: ', miinutes);
+}
+
+function playSound(){
+  console.log('play sound')
+}
 //only shows when timer runs out on its own, once clicked button is hidden only reset shows
-function stopTimer() {
-  console.log("stop timer", stopBtnId);
+function stopSound() {
+  console.log("stop sound", stopBtnId);
+  
 }
 
-// //only this button shows, once clicked then start and pause show
-// function resetTimer(){
-//   console.log('reset timer', resetBtnId)
-// }
+
 
 function countdown(){
   if(hours == 0 && minutes == 0 && seconds == 0){
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
+      hours = 00;
+      minutes = 00;
+      seconds = 00;
   } else if(seconds != 0){
       seconds--;
   } else if(minutes != 0 && seconds == 0){
@@ -107,15 +134,16 @@ function displayTime(){
 function handleStart(e) {
   startBtnId = parseInt(e.target.id);
   startTimer();
-  //console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
+  // console.log(e.target.id, startBtnId)//rendered 28 which matches task.id 28
+}
+
+function handleReset(e){
+  resetBtnId = parseInt(e.target.id)
+  resetTimer()
 }
 
 function handleStop(e) {
   stopBtnId = parseInt(e.target.id);
-  stopTimer();
+  stopSound();
 }
 
-// function handleReset(e){
-//   resetBtnId = parseInt(e.target.id)
-//   resetTimer()
-// }
