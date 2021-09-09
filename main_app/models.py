@@ -30,18 +30,3 @@ class Bread(models.Model):
     return reverse('breads_detail', kwargs={'bread_id': self.id})
 
 
-
-class Photo(models.Model):
-  url = models.CharField(max_length=250)
-  bread = models.OneToOneField(Bread, on_delete=models.CASCADE)
-  # task = models.OneToOneField(Task, on_delete=models.CASCADE)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-#add date to this model for photo gallery
-
-
-  def __str__(self):
-    # if self.bread_id:
-      return f"Photo for bread_id: {self.bread_id} @{self.url}"
-    # if self.task_id:
-      # return f"Photo for task_id: {self.task_id} @{self.url}" 

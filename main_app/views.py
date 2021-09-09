@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Bread, Task, Photo
+from .models import Bread, Task
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.views import LoginView
@@ -9,10 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-
-# S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
-# BUCKET = 'hedda-9721'
-
 
 from django.shortcuts import render
 
@@ -94,22 +90,3 @@ def add_task(request, bread_id, task_id):
   Bread.objects.get(id=bread_id).tasks.add(task_id)
   return redirect('breads_detail', bread_id=bread_id)
 
-#user can access all their photos in one place
-def photos_index(request):
-  photos = Photo.objects.all()
-  return render(request, 'photos/index.html', { 'photos': photos})
-
-
-# def add_bread_photo(request, bread_id, photo_id):
-#   # we can assign to bread_id or bread (if you have a bread object)
-#   photo = Photo(url=url, bread_id=bread_id)
-#   # Remove old photo if it exists
-#   bread_photo = Photo.objects.filter(bread_id=bread_id)
-#   if bread_photo.first():
-#     bread_photo.first().delete()
-#   photo.save()
-#   return redirect('breads_detail', bread_id=bread_id)
-
-def add_bread_photo(request, bread_id, photo_id):
-  Bread.objects.get(id=bread_id).photos.add(photo_id)
-  return redirect('breads_detail', bread_id=bread_id)
