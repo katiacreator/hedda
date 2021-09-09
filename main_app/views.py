@@ -10,7 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
-from django.shortcuts import render
 
 class Home(LoginView):
   template_name = 'home.html'
@@ -53,8 +52,8 @@ def breads_detail(request, bread_id):
     'bread': bread, 'tasks': tasks_bread_doesnt_have
   })
 
-@login_required
-class BreadCreate(CreateView):
+
+class BreadCreate(LoginRequiredMixin, CreateView):
   model = Bread
   fields = ['name', 'description']
 
@@ -62,36 +61,36 @@ class BreadCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-@login_required
-class BreadUpdate(UpdateView):
+
+class BreadUpdate(LoginRequiredMixin, UpdateView):
   model = Bread
   fields = ['name', 'description']
 
-@login_required
-class BreadDelete(DeleteView):
+
+class BreadDelete(LoginRequiredMixin, DeleteView):
   model = Bread
   success_url = '/breads/'
 
-@login_required
-class TaskList(ListView):
+
+class TaskList(LoginRequiredMixin, ListView):
   model = Task
 
-@login_required
-class TaskDetail(DetailView):
+
+class TaskDetail(LoginRequiredMixin, DetailView):
   model = Task
 
-@login_required
-class TaskCreate(CreateView):
-  model = Task
-  fields = ['name', 'hours', 'minutes']
 
-@login_required
-class TaskUpdate(UpdateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
   model = Task
   fields = ['name', 'hours', 'minutes']
 
-@login_required
-class TaskDelete(DeleteView):
+
+class TaskUpdate(LoginRequiredMixin, UpdateView):
+  model = Task
+  fields = ['name', 'hours', 'minutes']
+
+
+class TaskDelete(LoginRequiredMixin, DeleteView):
   model = Task
   success_url = '/tasks/'
 
