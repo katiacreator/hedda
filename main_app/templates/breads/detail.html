@@ -1,92 +1,98 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-{% comment %} <link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/bread-index.css' %}"
-/> {% endcomment %}
-<script defer src="{% static 'js/timer.js' %}"></script>
-{% comment %} <script defer src="{% static 'js/bread-detail.js' %}"></script> {% endcomment %}
-{% endblock %} {% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="{% static 'images/baked.png' %}"
+      alt="baked bread loaves icon"
+    />
+    <!-- =====BOX ICONS===== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{% static 'css/card-grid.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/model-detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <!--===== GSAP =====-->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
 
-<section class="page-header">
-  <h1>Bread Details</h1>
-</section>
-<section class="card-container">
-  <div class="card">
-    <div class="card-content">
-      <div class="card-img-container">
-        {% if bread.photo.url %}
-      <img 
-        src="{{bread.photo.url}}" 
-        alt="A photo of {{bread.name}}"
-        class="usr-img"
-      >
-    {% else %}
-      <img 
-        src="" 
-        alt="placeholder"
-      >
-    {% endif %}
-      </div>
-      <h2 class="card-title">{{ bread.name }}</h2>
-      <p>{{ bread.description }}</p>
-    </div>
-     <div>
-      <a href="{% url 'breads_update' bread.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'breads_delete' bread.id %}" class="btn danger">Delete</a>
-    </div>
-  </div>
-</section>
-{% comment %} Task Section starts here {% endcomment %}
-<h1>Task Section</h1>
-<section class="tasks">
-    {% comment %} <div class="subsection-title">
-      <h3>Add All Relevant Tasks to make this delicious bread!</h3>
-    </div> {% endcomment %}
-    <div class="subsection-content">
-    <h3>Available tasks</h3>
-      {% if tasks.count %}
-        {% for task in tasks.all %}
-          <div class="task-container">
-            <a href="{% url 'tasks_detail' task.id %}">
-              <p>{{ task.name }}</p>
-            </a>
-            <form action="{% url 'add_task' bread.id task.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn submit">Add task</button>
-            </form>
+    <!--===== MAIN JS =====-->
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <title>Hedda</title>
+  </head>
+  <body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div>
+          <a href="{% url 'home' %}" class="nav__logo">Hedda</a>
+        </div>
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+        <div class="nav__menu" id="nav-menu">
+          <div class="nav__close" id="nav-close">
+            <i class="bx bx-x"></i>
           </div>
-        {% endfor %}
-      {% else %}
-        <p class="all-tasks">
-          You have added all the available tasks!  
-        </p>
-      {% endif %}
-    </div>
-
-
-
-<h1>Task Slider</h1>
-{% if bread.tasks.count %}
-  {% for task in bread.tasks.all %}
-  <div class="card" id="taskid">
-      <div class="card-content">
-        <h2>{{ task.name }}</h2>
-        <p id="timer">
-          <span id="hour">{{ task.hours }}</span>:<span id="min">{{ task.minutes }}</span>
-        </p>
-        <button>
-          <span>Start Btn</span>
-        </button>
-        <button>
-          <span>Pause Btn</span>
-        </button>
-        <button>
-          <span>Reset Btn</span>
-        </button>
-      {% endfor %}
-      {% endif %}
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="{% url 'breads_index' %}" class="nav__link"
+                >Bread List</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_index' %}" class="nav__link"
+                >Task Timer Presets</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'breads_create' %}" class="nav__link"
+                >Store New Bread Recipe</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_create' %}" class="nav__link"
+                >Set New Task Timer</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'logout' %}" class="nav__link">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="l-main home">
+      <section class="card-container home" id="home">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-img-container">
+            <img 
+              src="{% static 'images/shinyloaf.jpg' %}" 
+              alt="bread photo"
+            >
+            </div>
+          <h2 class="card-title">{{ bread.name }}</h2>
+          <p class="home__description">{{ bread.description }}</p>
+          <a href="{% url 'breads_update' bread.id %}" class="btn warn ">Edit</a>
+          <a href="{% url 'breads_delete' bread.id %}" class="btn danger ">Delete</a>
+          </div>
+        <div>
       </div>
-  </section>
-</div>
-{% endblock %}
+      </section>
+    </main>
+</body>
+</html>

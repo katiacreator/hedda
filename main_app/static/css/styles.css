@@ -134,8 +134,8 @@ img {
 }
 
 .nav__link:hover {
-  /* color: var(--first-color-dark); */
-  border-bottom: solid black 2px;
+
+  border-bottom: solid cyan 2px;
 }
 
 .nav__toggle {
