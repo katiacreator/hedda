@@ -128,11 +128,3 @@ function handlePause(e) {
   pauseTimer();
 }
 
-//only shows when timer runs out on its own, once clicked button is hidden only reset shows
-// function playSound(e) {
-//   console.log("play sound", e.target.id);
-// }
-
-// function stopSound(e) {
-//   console.log("stop sound", stopBtnId);
-// }

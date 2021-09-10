@@ -1,66 +1,59 @@
-landingpagecover: Photo by <a href="https://unsplash.com/@vickyng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vicky Ng</a> on <a href="https://unsplash.com/s/photos/sourdough?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+# Hedda
+
+Hedda is a Django application that allows a user to keep track of all the timers for each step in a (sourdough) bread baking process. There are around 20 meticulous steps that go into making a proper sourdough loaf so timing is essential. This app helps the user keep track of all the timers they use by storing them all in one place.
+
+# App Demo Links
+- [Hedda Repo](https://github.com/katiacreator/hedda)
+- [Deployed Link](getbready@herokuapp.com)
+
+# Why the name Hedda?
+I named this app after the sourdough starter the primary user of this app uses to make her sourdough bread. Hedda is very much a living breathing being, so she was given a proper name from the user's heritage.
 
 
-let startBtnId;
-let stopBtnId;
-let resetBtnId;
+## Features
+- mobile responsive
+- side navigation on mobile screen
+- customizable timers
 
-let seconds;
-let minutes;
-let hours;
-let interval;
+## Icebox
+- Timer Sound
+- Slider with all the timers
+- Photo model
+- AWS bucket so user can upload photos of the baking process from start to finish
+- light/dark mode
+- tweak mobile responsiveness
 
-let timerEl;
-let hourEl;
-let minuteEl;
+## Acknowledgements
 
-// let totalTimeLeft;
+ - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [bedimcode](https://github.com/bedimcode/responsive-landing-page-coffee3d/blob/master/index.html)
+ - [David Stinson](https://github.com/DavidStinson)
+ - [Ben Manley](https://github.com/ManliestBen)
+ - [Cory Rice](https://github.com/crice802)
+ - [Blake Romano](https://github.com/blakeromano)
+ - [Julie B] my awesome former housemate who requested this app, and without her financial contribution I would not be able to complete this bootcamp.
 
-// 
+
+## Documentation
+
+- [Django](https://linktodocumentation)
+- [Python](https://linktodocumentation)
+- [Postgresql](https://linktodocumentation)
+- [What is a Javascript?](https://linktodocumentation)
 
 
-function startTimer(){
-  console.log('start timer', startBtnId)
-  hourEl = document.getElementById("hour");
-  hours = parseInt(hourEl.innerHTML);
-  minuteEl = document.getElementById("minute")
-  minutes = parseInt(minuteEl.innerHTML);
-  seconds = 1
-  // totalTimeLeft = hours * 60 + minutes * 60
-  //convert hours to minutes
-  hoursLeft = Math.floor(minutes / 60)
-  console.log('hoursLeft: ', hoursLeft);
-  //converts minutes to seconds
-  minutesLeft = Math.floor(seconds / 60)
-  timerInterval = setInterval(function(){
-    seconds--
-    minutesLeft--
-    hoursLeft--
-    hourEl.innerHTML = hoursLeft
-    minuteEl.innerHTML = minutesLeft
-  }, 1000)
-}
+## Screenshots
 
-//PSEUDOCODE
-//* START TIMER */
-// start a timer based on the time inputs from the user
-// let timerEl = document.getElementById("timer").innerHTML;
-// console.log("timerEl : ", timerEl);
-// the user will put in hour input and minutes input for standard baking times
-// let hours = parseInt(document.getElementById("hour").innerHTML);
-// let minutes = parseInt(document.getElementById("min").innerHTML);
-// console.log("minutes: ", minutes);
-// console.log("hours: ", hours);
-// hours and minutes need to be converted to the same unit- seconds?
-// let hours = Math.floor((1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-// let minutes = Math.floor((1000 * 60 * 60) / (1000 * 60));
-// let seconds = Math.floor((1000 * 60) / 1000);
-// html needs to show in real time the hour and minute input changing so append innerHTML?
-//* PAUSE TIMER */
-// the user needs to be able to pause (button will be dynamically rendered) the time and restart from the time they paused it
-//once the timer complete they need to be able to stop the timer sound
-//* STOP TIMER */
-// once the stop button which will need to be dynamically rendered, the timer needs to be automatically reset and a notication that the task has been completed
-//* RESET TIMER */
-//maybe the user pressed the reset button for these timers
-// whatever timer function I get going needs to be able to run for multiple tasks at once, this can be achieved by identifying it is a seperate dynamic element by id created on for loop?
+![Landing Page](main_app/static/images/landingpageSS.png)
+![Side Navigation](main_app/static/images/sidenavSS.png)
+![Pseudocode](main_app/static/images/pseudocodeSS.png)
+
+## Authors
+
+- [katiacreator](https://www.github.com/katiacreator)
+- [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+
+  
