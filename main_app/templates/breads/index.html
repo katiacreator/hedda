@@ -1,28 +1,104 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-{% comment %} <link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/sushi-index.css' %}"
-/> {% endcomment %}
-{% endblock %} {% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="{% static 'images/baked.png' %}"
+      alt="baked bread loaves icon"
+    />
+    <!-- =====BOX ICONS===== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/card-grid.css' %}" />
+    <!--===== GSAP =====-->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
 
-<section class="page-header">
-  <h1>Bread List</h1>
-</section>
-
-<section class="card-container">
-  {% for bread in breads %}
-  <div class="card">
-    <a href="{% url 'breads_detail' bread.id %}">
-      <div class="card-content">
-        <div class="card-img-container">
-          {% comment %} <img src="{% static 'images/sushi.svg' %}" alt="sushi logo icon" /> {% endcomment %}
+    <!--===== MAIN JS =====-->
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <title>Hedda</title>
+  </head>
+  <body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div>
+          <a href="#" class="nav__logo">Hedda</a>
         </div>
-        <h2 class="card-title">{{ bread.name }}</h2>
-        <p>{{ bread.description }}</p>
-      </div>
-    </a>
-  </div>
-  {% endfor %}
-</section>
-{% endblock %}
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+        <div class="nav__menu" id="nav-menu">
+          <div class="nav__close" id="nav-close">
+            <i class="bx bx-x"></i>
+          </div>
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="{% url 'home' %}" class="nav__link active">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'breads_index' %}" class="nav__link"
+                >Bread List</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_index' %}" class="nav__link"
+                >Task Timer Presets</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'breads_create' %}" class="nav__link"
+                >Store New Bread Recipe</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_create' %}" class="nav__link"
+                >Set New Task Timer</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'logout' %}" class="nav__link">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="l-main">
+      <section>
+        <h1>Bread List</h1>
+      </section>
+      <section class="card-container">
+        {% for bread in breads %}
+        <div class="card">
+          <a href="{% url 'breads_detail' bread.id %}">
+            <div class="card-content">
+              <div class="card-img-container">
+                <img
+                  src="{% static 'images/rustic.jpg' %}"
+                  alt="baked sourdough bread loaf"
+                />
+              </div>
+              <h2 class="card-title">{{ bread.name }}</h2>
+              <p>{{ bread.description }}</p>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>

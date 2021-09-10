@@ -49,7 +49,6 @@
 
       <ul class="nav__list">
         {% if user.is_authenticated %}
-        <li class="nav__item"><a href="{% url 'home' %}" class="nav__link active">Home</a></li>
         <li class="nav__item"><a href="{% url 'breads_index' %}" class="nav__link">All breads</a></li>
         <li class="nav__item"><a href="{% url 'tasks_index' %}" class="nav__link">All tasks</a></li>
         <li class="nav__item"><a href="{% url 'breads_create' %}" class="nav__link">Add a bread</a></li>
@@ -72,7 +71,7 @@
             <img
               src="{% static 'images/coverBG.jpg' %}"
               alt="two loaves of baked sourdough bread resting on a cooling rack"
-              data-speed="-2"
+              data-speed="-1"
               class="move"
             />
           </div>
