@@ -1,10 +1,134 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
-<header>
-    <div class="content">
-      <h1>HEDDA</h1>
-      <div class="countdown">It's a Bread Timer Not An Egg Timer</div>
-    </div>
-  </header>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- =====BOX ICONS===== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" /> 
+    <!--===== GSAP =====-->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
+
+    <!--===== MAIN JS =====-->
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <title>Hedda</title>
+  </head>
+  <body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div>
+          <a href="#" class="nav__logo">Hedda</a>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+          <div class="nav__close" id="nav-close">
+            <i class="bx bx-x"></i>
+          </div>
+
+          <ul class="nav__list">
+            {% if user.is_authenticated %}
+            <li class="nav__item">
+              <a href="{% url 'home' %}" class="nav__link active">Home</a>
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'breads_index' %}" class="nav__link"
+                >Bread Recipes</a
+              >
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'tasks_index' %}" class="nav__link"
+                >Task Timer Presets</a
+              >
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'breads_create' %}" class="nav__link"
+                >Store New Bread Recipe</a
+              >
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'tasks_create' %}" class="nav__link"
+                >Set New Task Timer</a
+              >
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+
+            <li class="nav__item">
+              <a href="{% url 'logout' %}" class="nav__link">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'home' %}" class="nav__link">Login</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'signup' %}" class="nav__link">SignUp</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="l-main">
+      <!--===== HOME =====-->
+      <section class="home" id="home">
+        <div class="home__container bd-grid">
+          <div class="home__img">
+            <img
+              src="{% static 'images/coverBG.jpg' %}"
+              alt="two loaves of baked sourdough bread resting on a cooling rack"
+              data-speed="-2"
+              class="move"
+            />
+          </div>
+
+          <div class="home__data">
+            <h1 class="home__title">
+              Get Bready <br />
+              with Hedda
+            </h1>
+            <p class="home__description">
+              Take your time 
+              keeping track of each task <br /> while baking your next masterpiece.
+            </p>
+            <a href="{% url 'home' %}" class="home__button">Get Bready!</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div>
+        Icons made by
+        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="https://www.flaticon.com/" title="Flaticon"
+          >www.flaticon.com</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
