@@ -34,6 +34,9 @@ def signup(request):
   return render(request, 'signup.html', context)
 
 
+def landing(request):
+  return render(request, 'landing.html')
+
 def about(request):
   return render(request, 'about.html')
 
