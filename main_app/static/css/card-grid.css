@@ -44,3 +44,40 @@
   margin: 5px 0;
   font-size: var(--font-reg);
 }
+
+.btn {
+  font-size: var(--font-l);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  text-decoration: none;
+  background-color: turquoise;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-right: 10px;
+  color: black;
+}
+
+
+
+.submit {
+  
+  background-color: turquoise;
+}
+
+.secondary {
+
+  background-color: blue;
+}
+
+.warn {
+
+  background-color: yellow
+}
+
+.danger {
+
+  background-color: red;
+}

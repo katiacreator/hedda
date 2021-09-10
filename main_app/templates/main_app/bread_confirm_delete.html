@@ -3,15 +3,15 @@
 
 {% block content %}
 
-<h2>Are you sure you want to delete '{{ object.name }}'</h2>
-
-<form action="" method="post" class="form">
-  {% csrf_token %}
-  <a href="{% url 'breads_detail' bread.id %}" class="btn secondary">
-  Go Back
-  </a>
-  <button type="submit" class="btn danger">Delete!</button>
-</form>
+<section class="home__data">
+  <h2 class="home__description">Are you sure you want to delete '{{ object.name }}'</h2>
+  <form action="" method="post" class="form">
+    {% csrf_token %}
+    <a href="{% url 'breads_detail' bread.id %}" class="btn secondary">
+    Go Back
+    </a>
+    <button type="submit" class="btn danger">Delete!</button>
+  </form>
 
 
 {% endblock %}

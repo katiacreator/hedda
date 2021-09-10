@@ -1,28 +1,120 @@
-{% extends 'base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="{% static 'images/baked.png' %}"
+      alt="baked bread loaves icon"
+    />
+    <!-- =====BOX ICONS===== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
 
-{% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}"/>
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <!--===== GSAP =====-->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
 
-{% endblock %}
+    <!--===== MAIN JS =====-->
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <title>Hedda</title>
+  </head>
+  <body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div>
+          <a href="{% url 'home' %}" class="nav__logo">Hedda</a>
+        </div>
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+        <div class="nav__menu" id="nav-menu">
+          <div class="nav__close" id="nav-close">
+            <i class="bx bx-x"></i>
+          </div>
+          <ul class="nav__list">
+            {% if user.is_authenticated %}
+            <li class="nav__item">
+              <a href="{% url 'breads_index' %}" class="nav__link"
+                >Bread Recipes</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_index' %}" class="nav__link"
+                >Task Timer Presets</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'breads_create' %}" class="nav__link"
+                >Store New Bread Recipe</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'tasks_create' %}" class="nav__link"
+                >Set New Task Timer</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'logout' %}" class="nav__link">Logout</a>
+            </li>
+            {% else %} {% comment %}
+            <li class="nav__item">
+              <a href="{% url 'about' %}" class="nav__link">About</a>
+            </li>
+            {% endcomment %}
+            <li class="nav__item">
+              <a href="{% url 'home' %}" class="nav__link">Login</a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'signup' %}" class="nav__link">SignUp</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-{% block content %}
-
-<div class='page-header'>
-{% if object %}
-  <h1>Edit Bread Detail</h1>
-{% else %}
-  <h1>Add a Bread</h1>
-{% endif %}
-  {% comment %} <img src="{% static 'images/nerd-Bread.svg' %}" alt="A Bread using a computer"/> {% endcomment %}
-</div>
-
-<form action="" method='post' class='form-container'>
-  {% csrf_token %}
-  <table>
-    {{form.as_table}}
-  </table>
-  <button type="submit" class="btn submit">Submit!</button>
-</form>
-
-{% endblock %}
+    <main class="l-main">
+      <!--===== HOME =====-->
+      <section class="home" id="home">
+        <div class="home__container bd-grid">
+        <div class="home__img">
+            <img
+              src="{% static 'images/coverBG.jpg' %}"
+              alt="two loaves of baked sourdough bread resting on a cooling rack"
+              data-speed="-2"
+              class="move"
+            />
+          </div>
+          <div class="home__data">
+          {% if object %}
+          <h1 class="home__description">Edit Bread Detail</h1>
+          {% else %}
+          <h1 class="home__description">Add a Bread</h1>
+          {% endif %} 
+        </div>
+        <form action="" method="post" class="form-container">
+          {% csrf_token %}
+          <table class="home__data">
+            {{form.as_table}}
+          </table>
+          <button type="submit" class="btn submit">Submit!</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
