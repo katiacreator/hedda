@@ -10,11 +10,18 @@ Hedda is a Django application that allows a user to keep track of all the timers
 # Why the name Hedda?
 I named this app after the sourdough starter the primary user of this app uses to make her sourdough bread. Hedda is very much a living breathing being, so she was given a proper name from the user's heritage.
 
-
 ## Features
 - mobile responsive
 - side navigation on mobile screen
 - customizable timers
+- 
+## Screenshots
+![Landing Page](main_app/static/images/landingpageSS.png)
+![Side Navigation](main_app/static/images/sidenavSS.png)
+![Pseudocode](main_app/static/images/pseudocodeSS.png)
+
+## User Stories
+![User Stories](main_app/static/images/userstories.png)
 
 ## Icebox
 - Timer Sound
@@ -26,33 +33,24 @@ I named this app after the sourdough starter the primary user of this app uses t
 
 ## Acknowledgements
 
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
- - [bedimcode](https://github.com/bedimcode/responsive-landing-page-coffee3d/blob/master/index.html)
- - [David Stinson](https://github.com/DavidStinson)
- - [Ben Manley](https://github.com/ManliestBen)
- - [Cory Rice](https://github.com/crice802)
- - [Blake Romano](https://github.com/blakeromano)
- - [Julie B] my awesome former housemate who requested this app, and without her financial contribution I would not be able to complete this bootcamp.
-
+ - [Readme.so: Readme Editor](https://readme.so/)
+ - [bedimcode: Responsive Landing Page Design Tutorial](https://github.com/bedimcode/responsive-landing-page-coffee3d/blob/master/index.html)
+ - [David Stinson: CSS Styling Support](https://github.com/DavidStinson)
+ - [Ben Manley: JS Timers Lecture](https://github.com/ManliestBen)
+ - [learn-webdevYT: countdown timer tutorial](https://github.com/learn-webdevYT/countdown-timer/)
+ - [Cory Rice: Sqlite Translation Support & Deployment Support](https://github.com/crice802)
+ - [Blake Romano: Deployment Support](https://github.com/blakeromano)
+ - [Julie B] my awesome former housemate who requested this app, and supplier of photos and phrase- 'Get Bready'.
+ - Hedda who makes a delicious pizza crust
 
 ## Documentation
 
-- [Django](https://linktodocumentation)
-- [Python](https://linktodocumentation)
-- [Postgresql](https://linktodocumentation)
-- [What is a Javascript?](https://linktodocumentation)
-
-
-## Screenshots
-
-![Landing Page](main_app/static/images/landingpageSS.png)
-![Side Navigation](main_app/static/images/sidenavSS.png)
-![Pseudocode](main_app/static/images/pseudocodeSS.png)
+- [Django](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
+- [Python](https://docs.python.org/3/)
+- [Postgresql](https://www.postgresqltutorial.com/)
+- [What is a Javascript?](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ## Authors
-
 - [katiacreator](https://www.github.com/katiacreator)
 - [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
 
