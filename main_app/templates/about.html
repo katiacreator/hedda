@@ -5,7 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+ <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="{% static 'images/baked.png' %}"
+      alt="baked bread loaves icon"
+    />
     <!-- =====BOX ICONS===== -->
     <link
       href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
@@ -29,7 +34,7 @@
     <header class="l-header">
       <nav class="nav bd-grid">
         <div>
-          <a href="#" class="nav__logo">Hedda</a>
+          <a href="{% url 'home' %}" class="nav__logo">Hedda</a>
         </div>
 
         <div class="nav__toggle" id="nav-toggle">
@@ -42,32 +47,27 @@
           </div>
 
           <ul class="nav__list">
-            {% if user.is_authenticated %}
-            <li class="nav__item">
-              <a href="{% url 'home' %}" class="nav__link active">Home</a>
-            </li>
-
             <li class="nav__item">
               <a href="{% url 'breads_index' %}" class="nav__link"
-                >Bread Recipes</a
+                >Bread Notes</a
               >
             </li>
 
             <li class="nav__item">
               <a href="{% url 'tasks_index' %}" class="nav__link"
-                >Task Timer Presets</a
+                >Task Notes</a
               >
             </li>
 
             <li class="nav__item">
               <a href="{% url 'breads_create' %}" class="nav__link"
-                >Store New Bread Recipe</a
+                >Add Bread</a
               >
             </li>
 
             <li class="nav__item">
               <a href="{% url 'tasks_create' %}" class="nav__link"
-                >Set New Task Timer</a
+                >Add Task</a
               >
             </li>
 
@@ -78,17 +78,6 @@
             <li class="nav__item">
               <a href="{% url 'logout' %}" class="nav__link">Logout</a>
             </li>
-            {% else %}
-            <li class="nav__item">
-              <a href="{% url 'about' %}" class="nav__link">About</a>
-            </li>
-            <li class="nav__item">
-              <a href="{% url 'home' %}" class="nav__link">Login</a>
-            </li>
-            <li class="nav__item">
-              <a href="{% url 'signup' %}" class="nav__link">SignUp</a>
-            </li>
-            {% endif %}
           </ul>
         </div>
       </nav>
