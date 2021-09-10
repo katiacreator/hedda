@@ -34,52 +34,40 @@
     <header class="l-header">
       <nav class="nav bd-grid">
         <div>
-          <a href="#" class="nav__logo">Hedda</a>
+          <a href="{% url 'home' %}" class="nav__logo">Hedda</a>
         </div>
-
         <div class="nav__toggle" id="nav-toggle">
           <i class="bx bx-menu"></i>
         </div>
-
         <div class="nav__menu" id="nav-menu">
           <div class="nav__close" id="nav-close">
             <i class="bx bx-x"></i>
           </div>
-
           <ul class="nav__list">
             {% if user.is_authenticated %}
-            <li class="nav__item">
-              <a href="{% url 'home' %}" class="nav__link active">Home</a>
-            </li>
-
             <li class="nav__item">
               <a href="{% url 'breads_index' %}" class="nav__link"
                 >Bread Recipes</a
               >
             </li>
-
             <li class="nav__item">
               <a href="{% url 'tasks_index' %}" class="nav__link"
                 >Task Timer Presets</a
               >
             </li>
-
             <li class="nav__item">
               <a href="{% url 'breads_create' %}" class="nav__link"
                 >Store New Bread Recipe</a
               >
             </li>
-
             <li class="nav__item">
               <a href="{% url 'tasks_create' %}" class="nav__link"
                 >Set New Task Timer</a
               >
             </li>
-
             <li class="nav__item">
               <a href="{% url 'about' %}" class="nav__link">About</a>
             </li>
-
             <li class="nav__item">
               <a href="{% url 'logout' %}" class="nav__link">Logout</a>
             </li>

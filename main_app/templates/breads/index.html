@@ -17,8 +17,8 @@
       rel="stylesheet"
     />
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/card-grid.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <!--===== GSAP =====-->
     <script
       defer
@@ -34,7 +34,7 @@
     <header class="l-header">
       <nav class="nav bd-grid">
         <div>
-          <a href="#" class="nav__logo">Hedda</a>
+          <a href="{% url 'home' %}" class="nav__logo">Hedda</a>
         </div>
         <div class="nav__toggle" id="nav-toggle">
           <i class="bx bx-menu"></i>
@@ -44,9 +44,6 @@
             <i class="bx bx-x"></i>
           </div>
           <ul class="nav__list">
-            <li class="nav__item">
-              <a href="{% url 'home' %}" class="nav__link active">Home</a>
-            </li>
             <li class="nav__item">
               <a href="{% url 'breads_index' %}" class="nav__link"
                 >Bread List</a
@@ -77,11 +74,8 @@
         </div>
       </nav>
     </header>
-    <main class="l-main">
-      <section>
-        <h1>Bread List</h1>
-      </section>
-      <section class="card-container">
+    <main class="l-main home">
+      <section class="card-container home" id="home">
         {% for bread in breads %}
         <div class="card">
           <a href="{% url 'breads_detail' bread.id %}">

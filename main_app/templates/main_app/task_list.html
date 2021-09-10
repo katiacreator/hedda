@@ -77,11 +77,8 @@
         </div>
       </nav>
     </header>
-    <main class="l-main">
-      <section>
-        <h1>Task List</h1>
-      </section>
-      <section class="card-container">
+    <main class="l-main home">
+      <section class="card-container home" id="home">
         {% for task in task_list %}
         <div class="card">
           <a href="{% url 'tasks_detail' task.id %}">

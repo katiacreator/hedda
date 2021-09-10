@@ -79,6 +79,7 @@ img {
   left: 0;
   z-index: var(--z-fixed);
   background-color: var(--first-color);
+  border-bottom: solid cyan 3px;
 }
 
 /*===== NAV =====*/
@@ -189,14 +190,15 @@ img {
 
 .home__button {
   display: inline-block;
-  background-color: var(--first-color-dark);
+  background-color: turquoise;
   color: #fcf8f8;
-  padding: 1.125rem 2rem;
+  padding: 1.125rem 1.5rem;
   border-radius: 0.5rem;
 }
 
 .home__button:hover {
-  background-color: var(--first-color-darken);
+  background-color: turquoise;
+  padding: 1.125rem 2rem;
 }
 
 /* ===== MEDIA QUERIES =====*/
